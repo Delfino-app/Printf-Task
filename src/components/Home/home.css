@@ -1,0 +1,104 @@
+:root{
+
+    --primary :#222326;/**/
+    --bcgWhite : #ffffff;
+    --dark : #343a40;
+    --azul : #0d1c39;
+    --semiWhite: #f7f7f7;
+    --secundary:#444;
+    --distaque:#2fab8e;
+    --titleP: #ccc;
+    --textColor:#ccc;
+}
+*{
+
+    margin: 0 auto;
+    box-sizing: border-box;
+    font-family: 'Arial';
+}
+body{
+
+    background-color: #f8f8f8;
+}
+.container{
+
+    max-width: 50% !important;
+    margin: 0 auto !important;
+    padding: 20px;
+}
+
+.AddItemContent{
+
+    margin-top: 50px;
+}
+.AddItemContent .frmPost{
+
+    display: inline-block;
+    padding-bottom: 20px;
+    width: 100%;
+}
+.frmPost input{
+
+    width: 90%;
+    padding:10px 5px;
+    border:1px solid var(--textColor);
+    border-radius: 3px;
+}
+
+.frmPost button{
+
+    width: 10%;
+    padding:10px 5px;
+    background-color: var(--distaque);
+    color: white;
+    border: 1px solid var(--distaque);
+    border-radius: 3px;
+}
+
+.TaskLis{
+
+    width: 100%;
+    margin-top: 10px;
+}
+.emptyList{
+
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+    color: var(--secundary);
+    font-size: 14px;
+}
+.TaskLis .list{
+
+    border-radius: 2px;
+    background-color: var(--bcgWhite);
+    margin-top: 10px;
+    width: 100%;
+    padding: 15px 10px;
+    transition: all .2s ease;
+    cursor: pointer;
+    border-left: 3px solid var(--dark);
+}
+.TaskLis .list:hover{
+
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1) !important;
+}
+.list h3{
+
+    color: var(--primary);
+    font-size: 16px;
+    font-weight: 350;
+}
+.ActionContent{
+
+    float: right;
+    margin-top: -20px;
+}
+.taskDone{
+
+    border-left: 3px solid var(--distaque) !important;
+}
+.taskDone h3{
+
+    text-decoration: line-through;
+}
