@@ -1,17 +1,21 @@
 import './home.css';
 import Task from "../Task";
-import {useState} from "react";
+import {useState, useEffect} from "react";
 
 const Home = () => {
 
-    const [listTask,setListTask] = useState([
-        {task:'Learn React Components and Hoocks',done:false,id:1},
-        {task:'Make a To do App Witch React',done:false,id:2},
-        {task:'work in Sig-Copenfl Project Today',done:false,id:3}
-    ]);
+    const [listTask,setListTask] = useState([]);
 
     const [newTask,setNewTask] = useState("");
-    const [idValue,setIdValue] = useState(4);
+
+
+    useEffect(() =>{
+        
+        const data = localStorage.getItem("listTask");
+
+        data && setListTask(JSON.parse(data));
+
+    },[])
 
     const handleValueInput = (e) => {
 
@@ -22,48 +26,59 @@ const Home = () => {
 
         e.preventDefault();
 
-        const data = {task:newTask,id:idValue}
+        const data = {task:newTask,id:Math.random(1111,9999)};
 
-        setListTask([...listTask,data]);
+        listTask.push(data);
+
+        //Save Data to localStorage
+        localStorage.setItem("listTask",JSON.stringify(listTask));
 
         setNewTask("");
-
-        const newId = idValue + 1;
-        setIdValue(newId);
     }
 
-    const handleTogleStatus = (item) => {
+    const handleTogleStatus = async  (item) => {
 
         //Toogle done value (true || false)
         item.done = !item.done;
 
         const newList = listTask.filter(list => list.id !== item.id);
 
-        if(item.done){
+        item.done ? newList.unshift(item) :  newList.push(item);
 
-            //Put a task done in the top
-            newList.unshift(item);
-        }
-        else{
+        await setListTask(newList);
 
-            newList.push(item);
-        }
+        //Save Data to localStorage
+        localStorage.setItem("listTask",JSON.stringify(listTask));
+    }
 
-        setListTask(newList);
+    const handleDeleteAll = () => {
+
+        localStorage.clear();
+
+        setListTask([]);
     }
 
     return(
 
         <div className="Home">
             <div className="container">
-                <h2><b>Things To Do</b></h2>
+                <h2><b>Printf-Task</b></h2>
                 <div className="AddItemContent">
                     <form method="POST" className="frmPost" onSubmit={(e) => handleSubmitform(e)}>
                         <input type="text" placeholder="New Task..." required value={newTask} onChange = {(e) => handleValueInput(e)} />
                         <button type="submit">Save</button>
                     </form>
                 </div>
-                <Task  listTask ={listTask}  handleTogleStatus ={handleTogleStatus}/>
+                <h3 className="titleToogle">Done</h3>
+                <Task  listTask ={listTask.filter((list) => { return list.done})} title="Done List" handleTogleStatus ={handleTogleStatus}/>
+                <h3 className="titleToogle">To Do</h3>
+                <Task  listTask ={listTask.filter((list) => { return !list.done})} title="To do List" handleTogleStatus ={handleTogleStatus}/>
+
+                <div className="footer">
+                    <div className="container" style={{padding:'unset'}}>
+                    <button onClick={() => handleDeleteAll()}>Delete All</button>
+                    </div>
+                </div>
             </div>
         </div>
     )

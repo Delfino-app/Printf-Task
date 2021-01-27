@@ -60,6 +60,7 @@ body{
     width: 100%;
     margin-top: 10px;
     padding:2px;
+    padding-bottom: 60px;
 }
 .emptyList{
 
@@ -68,14 +69,16 @@ body{
     text-align: center;
     color: var(--secundary);
     font-size: 14px;
+    margin:20px;
 }
 .TaskLis .list{
 
     border-radius: 2px;
     background-color: var(--bcgWhite);
-    margin-top: 10px;
+    margin-top:5px;
     width: 100%;
     padding: 15px 10px;
+    margin-bottom: 10px;
     transition: all .2s ease;
     cursor: pointer;
     border-left: 3px solid var(--dark);
@@ -107,4 +110,34 @@ body{
 .taskDone span{
 
     color:var(--distaque)
+}
+
+.titleToogle{
+
+    margin-top: 20px;
+}
+
+.footer{
+
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    padding:10px;
+    z-index: 9999;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1) !important;
+    background-color: #f7f7f7;
+}
+
+.footer button{
+
+    float: right;
+    padding:10px 15px;
+    background-color: red;
+    color: white;
+    border: 1px solid red;
+    border-radius: 3px;
+    cursor: pointer;
+    
 }
