@@ -59,6 +59,7 @@ body{
 
     width: 100%;
     margin-top: 10px;
+    padding:2px;
 }
 .emptyList{
 
@@ -101,4 +102,9 @@ body{
 .taskDone h3{
 
     text-decoration: line-through;
+}
+
+.taskDone span{
+
+    color:var(--distaque)
 }
